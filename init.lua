@@ -8,6 +8,7 @@ local function bootstrap(path, repo)
       "clone",
       "--filter=blob:none",
       "--single-branch",
+      "--branch=main",
       "https://github.com/" .. repo .. ".git",
       plugin_path,
     })

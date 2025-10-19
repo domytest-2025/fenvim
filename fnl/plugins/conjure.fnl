@@ -2,6 +2,7 @@
   :branch "main"
   :lazy true
   :dependencies [:Paterjason/cmp-conjure]
+  :ft [:clojure :fennel :python :scheme :lisp :janet :rocket]
   :init (fn []
           (set vim.g.conjure#mapping#doc_word "K")
           (set vim.g.conjure#client#clojure#nrepl#eval#auto_require false)
