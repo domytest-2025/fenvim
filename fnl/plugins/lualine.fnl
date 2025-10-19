@@ -22,7 +22,9 @@
       "")))
 
 [{1 :nvim-lualine/lualine.nvim
+  :lazy false
   :config (fn []
+            (print "config lualine")
             (let [lualine (require :lualine)]
               (lualine.setup
                 {:options {:theme "tokyonight"

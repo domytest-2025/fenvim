@@ -24,8 +24,8 @@
   (vim.keymap.set "n" "|" "<CMD>vsplit<CR>" {:desc :vsplit})
   (vim.keymap.set "n" "<leader>w" "<CMD>w<CR>" {:desc "write the buffer"})
   (vim.keymap.set "n" "<leader>sc" "<CMD>nohlsearch<CR>"
-    {:desc "Clear search highlight"})
-  )
+    {:desc "Clear search highlight"}))
+  
 
 {: init}
 

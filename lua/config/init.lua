@@ -1,6 +1,6 @@
 -- [nfnl] fnl/config/init.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_.autoload
+local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
 do
   local options = {expandtab = true, tabstop = 2, shiftwidth = 2, softtabstop = 2, completeopt = "menuone,noselect", ignorecase = true, smartcase = true, clipboard = "unnamedplus", ruler = true, signcolumn = "number"}
@@ -8,5 +8,4 @@ do
     core.assoc(vim.o, option, value)
   end
 end
-vim.cmd("colorscheme", "tokyonight")
 return {}

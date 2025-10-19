@@ -15,35 +15,6 @@ local function system_verbose(command)
 	return output
 end
 
-local function setup_lazy ()
-
-	vim.g.mapleader = ","
-	vim.g.maplocalleader = " "
-	vim.loader.enable()
-
-
-	require("lazy").setup({
-		spec = {
-			-- import lua/plugins/init.lua
-			{ import = "plugins" },
-		},
-		change_detection = {
-			notify = false,
-			enable = true,
-			reload = true,
-		},
-		-- Configure any other settings here. See the documentation for more details.
-		-- colorscheme that will be used when installing plugins.
-		-- install = { colorscheme = { "habamax" } },
-		-- automatically check for plugin updates
-		checker = { enabled = true },
-	})
-
-
-	require("nfnl").setup()
-	require("core.init").init()
-end
-
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/"
 local function bootstrap(path, repo)
 	local plugin_path = lazy_path .. path
@@ -59,5 +30,28 @@ end
 bootstrap("lazy.nvim", "folke/lazy.nvim")
 bootstrap("nfnl", "Olical/nfnl")
 
-setup_lazy()
+vim.g.mapleader = ","
+vim.g.maplocalleader = " "
+vim.loader.enable()
+
+require("lazy").setup({
+  spec = {
+    -- import lua/plugins/init.lua
+    { import = "plugins" },
+  },
+  change_detection = {
+    notify = false,
+    enable = true,
+    reload = true,
+  },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  -- install = { colorscheme = { "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+})
+
+
+require("nfnl").setup()
+require("core.init").init()
 
