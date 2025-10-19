@@ -3,11 +3,12 @@
   :lazy true}
 
  {1 :saghen/blink.cmp
-  :version "*"
+  :version "1.*"
   :lazy false
 
   :dependencies [:rafamadriz/friendly-snippets
                  :PaterJason/cmp-conjure
+                 :olimorris/codecompanion.nvim
                  :mikavilpas/blink-ripgrep.nvim
                  :L3MON4D3/LuaSnip]
 

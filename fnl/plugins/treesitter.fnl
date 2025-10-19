@@ -6,6 +6,9 @@
                                  :indent {:enable true}
                                  :ensure_installed [:bash
                                                     :clojure
+                                                    :python
+                                                    :starlark
+                                                    :janet_simple
                                                     :commonlisp
                                                     :dockerfile
                                                     :fennel

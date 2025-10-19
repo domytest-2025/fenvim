@@ -24,12 +24,11 @@
 [{1 :nvim-lualine/lualine.nvim
   :lazy false
   :config (fn []
-            (print "config lualine")
             (let [lualine (require :lualine)]
               (lualine.setup
-                {:options {:theme "tokyonight"
+                {:options {:theme :tokyonight-moon
                            :icons_enabled true
-                           :section_separators ["" ""]
+                           :section_separators ["|" ""]
                            :component_separators ["" ""]}
                  :sections {:lualine_a []
                             :lualine_b [[:mode {:upper true}]]

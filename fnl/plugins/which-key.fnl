@@ -1,0 +1,15 @@
+[{1 :folke/which-key.nvim
+  :VeryLazy true
+  :config (fn []
+            (let [wk (require :which-key)]
+              (wk.add [[:<leader>a {:group :AI}]
+                       [:<leader>b {:group :Buffer}]
+                       [:<leader>f {:group :Find}]
+                       [:<leader>l {:group :LSP}]
+                       [:<leader>la {:group "LSP actions"}]
+                       [:<leader>g {:group :Git}]
+                       [:<leader>s {:group :Search}]
+                       [:<leader>n {:group :Notifications}]
+                       [:<leader>t {:group :Toggle}]
+                       [:<leader>td {:group "Toggle diagnostics"}]
+                       [:<leader>d {:group :Diffview}]])))}]

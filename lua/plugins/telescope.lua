@@ -1,4 +1,4 @@
--- [nfnl] fnl/plugins/thescope.fnl
+-- [nfnl] fnl/plugins/telescope.fnl
 local function _1_()
   vim.keymap.set("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<CR>", {noremap = true})
   vim.keymap.set("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
@@ -11,4 +11,4 @@ local function _2_()
   telescope.setup({defaults = {file_ignore_patterns = {"node_modules"}, vimgrep_arguments = {"rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--iglob", "!.git", "--hidden"}}, extensions = {["ui-select"] = {themes.get_dropdown({})}}, pickers = {find_files = {find_command = {"rg", "--files", "--iglob", "!.git", "--hidden"}}}})
   return telescope.load_extension("ui-select")
 end
-return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-telescope/telescope-ui-select.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim"}, init = _1_, config = _2_}}
+return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-telescope/telescope-ui-select.nvim", {"nvim-telescope/telescope-fzf-native.nvim", build = "make"}, "nvim-lua/plenary.nvim"}, init = _1_, config = _2_}}

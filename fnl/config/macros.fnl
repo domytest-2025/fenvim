@@ -9,7 +9,6 @@
     (if to-merge
       (do
         (each [key value (pairs to-merge)]
-	  ;;(print (.. :key=  key ", " :val= (fennel.view value)))
           (tset args key value))
         args)
       args)))

@@ -1,3 +1,1 @@
-(import-macros {: tx} :config.macros)
-
-(tx "micampe/fennel.vim")
+[{1 "micampe/fennel.vim"}]

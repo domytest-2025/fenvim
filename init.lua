@@ -1,57 +1,35 @@
--- 
---  boostrap
--- 
-
-local function system_verbose(command)
-	-- Print the command being executed
-	print("Executing:", vim.inspect(command))
-
-	-- Start the system call
-	local out = vim.fn.system(command)
-	local exitcode = vim.v.shell_error
-	-- Log the result in the callback
-	print("Command finished with exit code:", exitcode)
-	print(output, "\n")
-	return output
-end
-
-local lazy_path = vim.fn.stdpath("data") .. "/lazy/"
-local function bootstrap(path, repo)
-	local plugin_path = lazy_path .. path
-	if not vim.uv.fs_stat(plugin_path) then
-		print("bootstrap " .. repo .. "...")
-		system_verbose({"git", "clone", "--filter=blob:none", "--single-branch", "--branch", "v11.17.1", "--depth", "1",
-			"https://github.com/" .. repo .. ".git", plugin_path})
-	end
-
-	vim.opt.rtp:prepend(plugin_path)
-end
-
-bootstrap("lazy.nvim", "folke/lazy.nvim")
-bootstrap("nfnl", "Olical/nfnl")
-
+-- [nfnl] init.fnl
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
-vim.loader.enable()
-
-require("lazy").setup({
-  spec = {
-    -- import lua/plugins/init.lua
-    { import = "plugins" },
-  },
-  change_detection = {
-    notify = false,
-    enable = true,
-    reload = true,
-  },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  -- install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
-})
-
-
-require("nfnl").setup()
-require("core.init").init()
-
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.foldenable = false
+vim.o.undofile = true
+vim.o.spell = true
+vim.o.termguicolors = true
+vim.o.exrc = true
+local function toggle_diagnostic_lines()
+	local _1_
+	if vim.diagnostic.config().virtual_lines then
+		_1_ = false
+	else
+		_1_ = { current_line = true }
+	end
+	return vim.diagnostic.config({ virtual_lines = _1_ })
+end
+local function toggle_diagnostic_text()
+	return vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+end
+vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+vim.keymap.set("n", "<leader>tdl", toggle_diagnostic_lines, { desc = "Toggle diagnostic virtual lines." })
+vim.keymap.set("n", "<leader>tdt", toggle_diagnostic_text, { desc = "Toggle diagnostic virtual text." })
+vim.keymap.set("n", "\\", ",")
+vim.keymap.set("i", "jk", "<esc>")
+vim.keymap.set("n", "<leader>q", "<CMD>quit<CR>", { desc = ":quit" })
+vim.keymap.set("n", "\\", "<CMD>split<CR>", { desc = ":split" })
+vim.keymap.set("n", "|", "<CMD>vsplit<CR>", { desc = ":vsplit" })
+vim.keymap.set("n", "<leader>bw", "<CMD>w<CR>", { desc = "Write the buffer" })
+vim.keymap.set("n", "<leader>sc", "<CMD>nohlsearch<CR>", { desc = "Clear search highlight" })
+return require("config.lazy")
