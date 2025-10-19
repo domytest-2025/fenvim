@@ -4,7 +4,7 @@
 (local n_keys
   {:n
     [["<leader>e" "<Cmd>Neotree<CR>" {:silent true :noremap true}]
-     ["<localleader>fb" "<Cmd>lua require'conform'.format()<CR>" {}]
+     ["<LocalLeader>fb" "<Cmd>lua require'conform'.format()<CR>" {}]
      ["<C-\\>" "<Cmd>FloatermToggle<CR>" {:silent true :noremap true}]]})
                
 (local t_keys

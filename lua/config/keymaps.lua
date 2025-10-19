@@ -1,8 +1,8 @@
 -- [nfnl] fnl/config/keymaps.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
-local n_keys = {n = {{"<leader>e", "<Cmd>Neotree<CR>", {silent = true, noremap = true}}, {"<localleader>fb", "<Cmd>lua require'conform'.format()<CR>", {}}, {"<C-\\>", "<Cmd>FloatermToggle<CR>", {silent = true, noremap = true}}}}
+local n_keys = {n = {{"<leader>e", "<Cmd>Neotree<CR>", {silent = true, noremap = true}}, {"<LocalLeader>fb", "<Cmd>lua require'conform'.format()<CR>", {}}, {"<C-\\>", "<Cmd>FloatermToggle<CR>", {silent = true, noremap = true}}}}
 local t_keys = {t = {{"<C-\\>", "<C-\\><C-n><Cmd>FloatermToggle<CR>", {silent = true, noremap = true}}}}
 local function setup()
   local keys = {n_keys, t_keys}

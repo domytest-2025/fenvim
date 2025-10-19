@@ -10,6 +10,7 @@
   "conjure": { "branch": "main", "commit": "4e0601be2ecd0f59e294b3f3d53c19b9f9285645" },
   "conjure-clj-additions-nrepl": { "branch": "master", "commit": "491ff6f06ebeb89ed609008ae606d3a3d3518af2" },
   "conjure-clj-additions-vanilla": { "branch": "master", "commit": "10899742e04a72bf87bb5384e4388983bbb5a6dd" },
+  "conjure-macroexpand": { "branch": "master", "commit": "021a67c4cd0830d032b5ed67afc5167cf9735b79" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fennel.vim": { "branch": "main", "commit": "0a5c89e7f31d2721a36f7043ee98e24e22e6325e" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
