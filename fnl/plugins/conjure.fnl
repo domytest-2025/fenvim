@@ -10,8 +10,11 @@
  {2 :PaterJason/cmp-conjure
   :lazy true
   :config (fn []
-            (print "cmp-joure")
             (let [cmp (require :cmp)
                   config (cmp.get_config)]
               (table.insert config.sources {:name "conjure"})
-              (cmp.setup config)))}]
+              (cmp.setup config)))}
+ {1 :Invertisment/conjure-clj-additions-nrepl
+  :lazy true}
+ {1 :Invertisment/conjure-clj-additions-vanilla
+  :lazy true}]
