@@ -13,12 +13,11 @@
       (if (and (not= msg.value.message nil)
                (and (not= msg.token nil)
                     (not= (type (tonumber msg.token)) :number)))
-        (set progress-message.msg (.. msg.token " : " msg.value.message))
-        (not= msg.value.message nil)
-        (set progress-message.msg msg.value.message)
-        
-        (not= msg.token nil)
-        (set progress-message.msg msg.token)))))
+          (set progress-message.msg (.. msg.token " : " msg.value.message))
+          (not= msg.value.message nil)
+          (set progress-message.msg msg.value.message)
+          (not= msg.token nil)
+          (set progress-message.msg msg.token)))))
 
 (fn setup-progress-handler []
   (let [original-handler (. vim.lsp.handler :$/progress)]
@@ -27,7 +26,8 @@
             (let [args (vim.F.pack_len ...)]
               (progress-handler (vim.F.unpack_len args))
               (original-handler ...))))))
-      
+
+(vim.lsp.config :fennel {:cmd [:fennel :lsp]} :filetypes [:fennel])
 
 (setup-progress-handler)
 

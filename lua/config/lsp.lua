@@ -37,5 +37,6 @@ local function setup_progress_handler()
   vim.lsp.handlers["$/progress"] = _4_
   return nil
 end
+vim.lsp.config("fennel", {cmd = {"fennel", "lsp"}}, "filetypes", {"fennel"})
 setup_progress_handler()
 return {["get-progress-message"] = get_progress_message}

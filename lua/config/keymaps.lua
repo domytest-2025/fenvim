@@ -2,6 +2,7 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
+local NS = {noremap = true, silent = true}
 local n_keys = {n = {{"<leader>e", "<Cmd>Neotree<CR>", {silent = true, noremap = true}}, {"<LocalLeader>fb", "<Cmd>lua require'conform'.format()<CR>", {}}, {"<C-\\>", "<Cmd>FloatermToggle<CR>", {silent = true, noremap = true}}}}
 local t_keys = {t = {{"<C-\\>", "<C-\\><C-n><Cmd>FloatermToggle<CR>", {silent = true, noremap = true}}}}
 local function setup()
