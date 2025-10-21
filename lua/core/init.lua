@@ -1,12 +1,15 @@
 -- [nfnl] fnl/core/init.fnl
+local _local_1_ = require("nfnl.module")
+local autoload = _local_1_["autoload"]
+local core = autoload("nfnl.core")
 local function toggle_diagnostic_lines()
-  local _1_
+  local _2_
   if vim.diagnostic.config().virtual_lines then
-    _1_ = false
+    _2_ = false
   else
-    _1_ = {current_line = true}
+    _2_ = {current_line = true}
   end
-  return vim.diagnostic.config({virtual_lines = _1_})
+  return vim.diagnostic.config({virtual_lines = _2_})
 end
 local function toggle_diagnostic_text()
   return vim.diagnostic.config({virtual_text = not vim.diagnostic.config().virtual_text})
@@ -21,6 +24,18 @@ local function init()
   vim.keymap.set("n", "\\", "<CMD>split<CR>", {desc = "split"})
   vim.keymap.set("n", "|", "<CMD>vsplit<CR>", {desc = "vsplit"})
   vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", {desc = "write the buffer"})
-  return vim.keymap.set("n", "<leader>sc", "<CMD>nohlsearch<CR>", {desc = "Clear search highlight"})
+  vim.keymap.set("n", "<leader>sc", "<CMD>nohlsearch<CR>", {desc = "Clear search highlight"})
+  do
+    local options = {expandtab = true, tabstop = 2, shiftwidth = 2, softtabstop = 2, completeopt = "menuone,noselect", ignorecase = true, smartcase = true, clipboard = "unnamedplus", ruler = true, signcolumn = "number"}
+    for option, value in pairs(options) do
+      core.assoc(vim.o, option, value)
+    end
+  end
+  local cfgs = {"core.keymaps", "core.floaterm", "core.conform"}
+  for _, cfg in ipairs(cfgs) do
+    local c = require(cfg)
+    c.setup()
+  end
+  return nil
 end
 return {init = init}

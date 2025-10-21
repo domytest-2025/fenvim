@@ -1,5 +1,4 @@
-(local {: autoload} (require :nfnl.module))
-(local lsp (autoload :config.lsp))
+(local lsp (require :core.lsp))
 
 (fn lsp_connection []
   (let [message (lsp.get-progress-message)]

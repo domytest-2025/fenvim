@@ -1,3 +1,5 @@
+(local {: autoload} (require :nfnl.module))
+(local core (autoload :nfnl.core))
 
 ;;; Diagnostics
 (fn toggle-diagnostic-lines []
@@ -23,9 +25,25 @@
   (vim.keymap.set "n" "\\" "<CMD>split<CR>" {:desc :split})
   (vim.keymap.set "n" "|" "<CMD>vsplit<CR>" {:desc :vsplit})
   (vim.keymap.set "n" "<leader>w" "<CMD>w<CR>" {:desc "write the buffer"})
-  (vim.keymap.set "n" "<leader>sc" "<CMD>nohlsearch<CR>"
-    {:desc "Clear search highlight"}))
+  (vim.keymap.set "n" "<leader>sc" "<CMD>nohlsearch<CR>" {:desc "Clear search highlight"})
+
+  (let [options
+        {:expandtab true
+         :tabstop 2
+         :shiftwidth 2
+         :softtabstop 2
+         :completeopt "menuone,noselect"
+         :ignorecase true
+         ; for search
+         :smartcase true
+         :clipboard :unnamedplus
+         :ruler true
+         :signcolumn :number}]
+    (each [option value (pairs options)]
+      (core.assoc vim.o option value)))
+  (let [cfgs ["core.keymaps" "core.floaterm" "core.conform"]]
+    (each [_ cfg (ipairs cfgs)]
+      (let [c (require cfg)]
+        ((. c :setup))))))
   
-
 {: init}
-

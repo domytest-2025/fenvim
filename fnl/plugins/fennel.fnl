@@ -1,3 +1,2 @@
-(local {: tx} (require :config.macros))
-
-[{1 :micampe/fennel.vim}]
+[{1 :micampe/fennel.vim}
+ {2 :Olical/nfnl :ft :fennel :dev true}]

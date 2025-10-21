@@ -1,10 +1,10 @@
--- [nfnl] fnl/config/lsp.fnl
+-- [nfnl] fnl/core/lsp.fnl
 local progress_message = {status = "", percent = 0, msg = ""}
 local function get_progress_message()
   return progress_message
 end
-local function progress_handler(_, msg, info)
-  local client = vim.lsp.get_client_by_id(info.client.id)
+local function progress_handler(_, msg, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
   if client then
     progress_message.status = msg.value.kind
     if (msg.value.percentage ~= nil) then
@@ -28,15 +28,19 @@ local function progress_handler(_, msg, info)
   end
 end
 local function setup_progress_handler()
-  local original_handler = vim.lsp.handler["$/progress"]
+  local original_handler = vim.lsp.handlers["$/progress"]
   local function _4_(...)
     local args = vim.F.pack_len(...)
     progress_handler(vim.F.unpack_len(args))
-    return original_handler(...)
+    if original_handler then
+      return original_handler(...)
+    else
+      return nil
+    end
   end
   vim.lsp.handlers["$/progress"] = _4_
   return nil
 end
-vim.lsp.config("fennel", {cmd = {"fennel", "lsp"}}, "filetypes", {"fennel"})
+vim.lsp.config("fennel", {cmd = {"fennel", "lsp"}, filetypes = {"fennel"}})
 setup_progress_handler()
 return {["get-progress-message"] = get_progress_message}

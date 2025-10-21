@@ -20,4 +20,4 @@ end
 local function _5_()
   return require("notify").dismiss({silent = true})
 end
-return {{"rcarriga/nvim-notify", opts = {stages = "static", render = "compact", fps = 1}, event = "VeryLazy", dependencies = {"Olical/nfnl"}, config = _1_, keys = {{"<leader>nd", _5_, {desc = "Dismiss notifications"}}, {"<leader>nc", "<CMD>NotificationsClear<CR>", {desc = "Clear notifications"}}, {"<leader>fn", "<CMD>Telescope notify<CR>", {desc = "Find notifications"}}}}}
+return {{"rcarriga/nvim-notify", opts = {stages = "static", render = "compact", fps = 1}, event = "VeryLazy", dependencies = {"Olical/nfnl"}, config = _1_, keys = {{"<leader>nd", _5_, desc = "Dismiss notifications"}, {"<leader>nc", "<CMD>NotificationsClear<CR>", desc = "Clear notifications"}, {"<leader>fn", "<CMD>Telescope notify<CR>", desc = "Find notifications"}}}}

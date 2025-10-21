@@ -7,7 +7,7 @@
   (vim.api.nvim_create_autocmd :BufWritePre
                                {:pattern "*"
                                 :callback (fn [args]
-                                            (print args.buf)
+                                            ;;(print args.buf)
                                             (conform.format {:bufnr args.buf}))}))
 
 {: setup}

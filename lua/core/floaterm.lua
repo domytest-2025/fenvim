@@ -1,6 +1,6 @@
--- [nfnl] fnl/config/floaterm.fnl
+-- [nfnl] fnl/core/floaterm.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_.autoload
+local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
 local function setup()
   vim.g.floaterm_width = 0.8
