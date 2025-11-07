@@ -41,7 +41,7 @@
          :signcolumn :number}]
     (each [option value (pairs options)]
       (core.assoc vim.o option value)))
-  (let [cfgs ["core.keymaps" "core.floaterm" "core.conform"]]
+  (let [cfgs ["core.keymaps" "core.fterm" "core.conform" "core.options"]]
     (each [_ cfg (ipairs cfgs)]
       (let [c (require cfg)]
         ((. c :setup))))))

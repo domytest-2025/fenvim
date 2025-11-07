@@ -31,7 +31,7 @@ local function init()
       core.assoc(vim.o, option, value)
     end
   end
-  local cfgs = {"core.keymaps", "core.floaterm", "core.conform"}
+  local cfgs = {"core.keymaps", "core.fterm", "core.conform", "core.options"}
   for _, cfg in ipairs(cfgs) do
     local c = require(cfg)
     c.setup()

@@ -33,9 +33,10 @@
    :css ["prettierd"]
    :yaml ["prettierd"]
    :markdown ["prettierd"]
-   :fennel ["fnlfmt"]
+   :fennel [:fnlfmt]
    :sql ["sqlfmt"]
    :gleam ["gleam"]
+   :c ["clang-format"]
    :* ["trim_whitespace" "trim_newlines"]})
 
 (local formatter->package
