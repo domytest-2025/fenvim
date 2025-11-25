@@ -1,4 +1,4 @@
 [{1 :gpanders/nvim-parinfer
-  :ft [:fennel :scheme :clojure :lisp :janet]
-  :lazy true
-  }]
+  :ft [:fennel :scheme :clojure :lisp :janet :racket]
+  :lazy true}]
+  

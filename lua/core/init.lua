@@ -1,6 +1,6 @@
 -- [nfnl] fnl/core/init.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
 local function toggle_diagnostic_lines()
   local _2_
@@ -31,7 +31,7 @@ local function init()
       core.assoc(vim.o, option, value)
     end
   end
-  local cfgs = {"core.keymaps", "core.fterm", "core.conform", "core.options"}
+  local cfgs = {"core.keymaps", "core.fterm", "core.conform", "core.options", "core.mini", "core.lsp"}
   for _, cfg in ipairs(cfgs) do
     local c = require(cfg)
     c.setup()

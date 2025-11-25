@@ -33,6 +33,7 @@
 (vim.lsp.config :fennel {:cmd [:fennel :lsp]
                          :filetypes [:fennel]})
 
-(setup-progress-handler)
+(fn setup []
+  (setup-progress-handler))
 
-{: get-progress-message}
+{: get-progress-message : setup}

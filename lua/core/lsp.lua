@@ -42,5 +42,7 @@ local function setup_progress_handler()
   return nil
 end
 vim.lsp.config("fennel", {cmd = {"fennel", "lsp"}, filetypes = {"fennel"}})
-setup_progress_handler()
-return {["get-progress-message"] = get_progress_message}
+local function setup()
+  return setup_progress_handler()
+end
+return {["get-progress-message"] = get_progress_message, setup = setup}

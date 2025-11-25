@@ -1,6 +1,6 @@
 (local {: autoload} (require :nfnl.module))
 (local core (autoload :nfnl.core))
-(local NS {:noremap true :silent true})
+(local NS {:noremap true :silent false})
 (local telescope (require :telescope.builtin))
 (fn get-visual-selection []
   (let [[sline scol] (vim.api.nvim_buf_get_mark 0 "<")
@@ -15,11 +15,9 @@
       (table.concat lines " "))))
 
 (local n_keys {:n [[:<leader>e :<Cmd>Neotree<CR> {:silent true :noremap true}]
+                   [:<ESC> :<Cmd>nohl<CR> {}]
                    [:<LocalLeader>fb
                     "<Cmd>lua require'conform'.format()<CR>"
-                    NS]
-                   ["<C-\\>"
-                    "<Cmd>lua require'FTerm'.toggle()<CR>"
                     NS]
                    ["<leader>fw"
                     (fn []
@@ -34,6 +32,7 @@
 
 (fn setup []
   (let [keys [n_keys]]
+    (set vim.g.neovide_enable_logo_key true)
     (each [_ t (ipairs keys)]
       (each [m kms (pairs t)]
         (each [_ [k cmd opt] (ipairs kms)]

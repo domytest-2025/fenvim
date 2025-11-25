@@ -116,7 +116,8 @@
 
  (tx "neovim/nvim-lspconfig"
    {:lazy false
-    :dependencies ["williamboman/mason-lspconfig.nvim" "hrsh7th/cmp-nvim-lsp" "stevearc/conform.nvim"]
+    :dependencies ["williamboman/mason-lspconfig.nvim" "hrsh7th/cmp-nvim-lsp"
+                   "stevearc/conform.nvim" "SmiteshP/nvim-navic"]
     :keys [(tx "<leader>ld" "<CMD>Telescope lsp_definitions<CR>" {:desc "LSP definition"})
            (tx "<leader>lu" "<CMD>Telescope lsp_implementations<CR>" {:desc "LSP implementations"})
            (tx "<leader>lt" "<CMD>Telescope lsp_type_definitions<CR>" {:desc "LSP type definitions"})
@@ -131,45 +132,46 @@
            (tx "<leader>lar" vim.lsp.buf.rename {:desc "LSP rename"})]
     :config
     (fn []
-      (let [lsp vim.lsp
-            caps ((. (require :cmp_nvim_lsp) :default_capabilities))
-            mlsp (require :mason-lspconfig)]
-        (mlsp.setup_handlers
-          (tx (fn [server-name]
-                (lsp.config server-name {:capabilities caps}))
-              {:fennel_ls
-               (fn []
-                 (print :fennel)
-                 (lsp.config :fennel
-                    {:cmd :fennel-language-server
-                     :filetypes [:fennel]
-                     :single_file_support true
-                     :root_dir (lsp.util.root_pattern :fnl)
-                     :settings
-                     {:fennel
-                      {:workspace
-                       {:library (vim.api.nvim_list_runtime_paths)}}}}))}
+       (let [lsp vim.lsp
+             caps ((. (require :cmp_nvim_lsp) :default_capabilities))
+             mlsp (require :mason-lspconfig)]
+         (mlsp.setup_handlers
+           (tx (fn [server-name]
+                 (lsp.config server-name {:capabilities caps}))
+               {:fennel_ls
+                (fn []
+                  (print :fennel)
+                  (lsp.config :fennel
+                     {:cmd :fennel-language-server
+                      :filetypes [:fennel]
+                      :single_file_support true
+                      :root_dir (lsp.util.root_pattern :fnl)
+                      :settings
+                      {:fennel
+                       {:workspace
+                        {:library (vim.api.nvim_list_runtime_paths)}}}}))}
                        
-              {:tailwindcss
-               (fn []
-                 ;; https://github.com/tailwindlabs/tailwindcss/discussions/7554#discussioncomment-12991596
-                 ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2336568169
-                 ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2664427180
-                 (lsp.config :tailwindcss
-                   {:settings
-                    {:tailwindCSS
-                     {:experimental
-                      {:classRegex [["\\[:[^.\\s]*((?:\\.[^.\\s\\]]*)+)[\\s\\]]" "\\.([^.]*)"]
-                                    ["\\:(\\.[^\\s#]+(?:\\.[^\\s#]+)*)" "\\.([^\\.\\s#]+)"]
-                                    ["class\\s+(\\:[^\\s\\}]*)[\\s\\}]" "[\\:.]([^.]*)"]
-                                    ["class\\s+(\"[^\\}\"]*)\"" "[\"\\s]([^\\s\"]*)"]
-                                    ["class\\s+\\[([\\s\\S]*)\\]" "[\"\\:]([^\\s\"]*)[\"]?"]
-                                    ["class\\s+'\\[([\\s\\S]*)\\]" "([^\\s]*)?"]]}
-                      :includeLanguages {:clojure "html"
-                                         :clojurescript "html"}}}}))}))))})
+               {:tailwindcss
+                (fn []
+                  ;; https://github.com/tailwindlabs/tailwindcss/discussions/7554#discussioncomment-12991596
+                  ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2336568169
+                  ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2664427180
+                  (lsp.config :tailwindcss
+                    {:settings
+                     {:tailwindCSS
+                      {:experimental
+                       {:classRegex [["\\[:[^.\\s]*((?:\\.[^.\\s\\]]*)+)[\\s\\]]" "\\.([^.]*)"]
+                                     ["\\:(\\.[^\\s#]+(?:\\.[^\\s#]+)*)" "\\.([^\\.\\s#]+)"]
+                                     ["class\\s+(\\:[^\\s\\}]*)[\\s\\}]" "[\\:.]([^.]*)"]
+                                     ["class\\s+(\"[^\\}\"]*)\"" "[\"\\s]([^\\s\"]*)"]
+                                     ["class\\s+\\[([\\s\\S]*)\\]" "[\"\\:]([^\\s\"]*)[\"]?"]
+                                     ["class\\s+'\\[([\\s\\S]*)\\]" "([^\\s]*)?"]]}
+                       :includeLanguages {:clojure "html"
+                                          :clojurescript "html"}}}}))}))))})
 
  (tx "RubixDev/mason-update-all"
    {:cmd "MasonUpdateAll"
     :dependencies ["williamboman/mason.nvim"]
     :main "mason-update-all"
     :opts {}})]
+ 

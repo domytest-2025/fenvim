@@ -2,7 +2,7 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
-local NS = {noremap = true, silent = true}
+local NS = {noremap = true, silent = false}
 local telescope = require("telescope.builtin")
 local function get_visual_selection()
   local _let_2_ = vim.api.nvim_buf_get_mark(0, "<")
@@ -33,9 +33,10 @@ local function _6_()
     return nil
   end
 end
-n_keys = {n = {{"<leader>e", "<Cmd>Neotree<CR>", {silent = true, noremap = true}}, {"<LocalLeader>fb", "<Cmd>lua require'conform'.format()<CR>", NS}, {"<C-\\>", "<Cmd>lua require'FTerm'.toggle()<CR>", NS}, {"<leader>fw", _5_, NS}}, v = {{"<leader>fw", _6_, NS}}}
+n_keys = {n = {{"<leader>e", "<Cmd>Neotree<CR>", {silent = true, noremap = true}}, {"<ESC>", "<Cmd>nohl<CR>", {}}, {"<LocalLeader>fb", "<Cmd>lua require'conform'.format()<CR>", NS}, {"<leader>fw", _5_, NS}}, v = {{"<leader>fw", _6_, NS}}}
 local function setup()
   local keys = {n_keys}
+  vim.g.neovide_enable_logo_key = true
   for _, t in ipairs(keys) do
     for m, kms in pairs(t) do
       for _0, _8_ in ipairs(kms) do
